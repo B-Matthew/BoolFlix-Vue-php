@@ -1,0 +1,15 @@
+@import "variables";
+@import "main-style";
+
+// REGOLE GENERALI
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $helvetica;
+  color: white;
+}

@@ -1,0 +1,11 @@
+$helvetica: Helvetica,sans-serif;
+$arial : Arial,Helvetica,sans-serif;
+
+@mixin btnPlay {
+  border: none;
+  border-radius: 2px;
+  font-size:20px;
+  font-weight: bold;
+  padding: 11px 22px;
+  transition: 0.3s;
+}
