@@ -149,7 +149,6 @@ main {
     }
   }
   #videoTrailer {
-    display: none;
     position: absolute;
     top: 0;
     left: 0;
@@ -157,13 +156,59 @@ main {
     height: 100%;
     z-index: 350;
     border: none;
+    transition: 0.5s;
   }
+
   #cross_trailer {
-    display: none;
     position: absolute;
     right: -30px;
     top: 0px;
     font-size: 30px;
     cursor: pointer;
+    transition: 0.5s;
+  }
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .5s;
+  }
+  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+  }
+}
+
+// Fine Sezione Jumbotron
+
+// Sezione Generi
+
+.generi {
+  h2 {
+    margin: 30px 0;
+  }
+  ul {
+    display: flex;
+    overflow-x: hidden;
+    li {
+      text-align: center;
+      margin: 30px 20px;
+      a {
+        color: white;
+        text-decoration: none;
+        transition: 0.3s;
+        h3 {
+          margin-top: 20px;
+          transition: 0.3s;
+          &:hover {
+            color: red;
+          }
+        }
+      }
+      .cards {
+        height: 270px;
+        width: 200px;
+        transition: 0.7s;
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+    }
   }
 }

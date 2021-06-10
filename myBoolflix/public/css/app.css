@@ -179,7 +179,6 @@ main {
 }
 
 .myJumbotron #videoTrailer {
-  display: none;
   position: absolute;
   top: 0;
   left: 0;
@@ -187,15 +186,65 @@ main {
   height: 100%;
   z-index: 350;
   border: none;
+  transition: 0.5s;
 }
 
 .myJumbotron #cross_trailer {
-  display: none;
   position: absolute;
   right: -30px;
   top: 0px;
   font-size: 30px;
   cursor: pointer;
+  transition: 0.5s;
+}
+
+.myJumbotron .fade-enter-active,
+.myJumbotron .fade-leave-active {
+  transition: opacity 0.5s;
+}
+
+.myJumbotron .fade-enter,
+.myJumbotron .fade-leave-to {
+  opacity: 0;
+}
+
+.generi h2 {
+  margin: 30px 0;
+}
+
+.generi ul {
+  display: flex;
+  overflow-x: hidden;
+}
+
+.generi ul li {
+  text-align: center;
+  margin: 30px 20px;
+}
+
+.generi ul li a {
+  color: white;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.generi ul li a h3 {
+  margin-top: 20px;
+  transition: 0.3s;
+}
+
+.generi ul li a h3:hover {
+  color: red;
+}
+
+.generi ul li .cards {
+  height: 270px;
+  width: 200px;
+  transition: 0.7s;
+}
+
+.generi ul li .cards:hover {
+  transform: scale(1.1);
 }
 
 * {
