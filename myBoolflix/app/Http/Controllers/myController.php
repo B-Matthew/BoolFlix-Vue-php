@@ -10,4 +10,25 @@ class myController extends Controller
 
       return view('pages.home');
     }
+
+  public function searchPage() {
+
+    return view("pages.searchMovies");
+  }
+  public function mySearch() {
+    
+    return redirect()->route('searchPage');
+  }
+
+  public function films($id) {
+
+    $idFilm = $id;
+    return view('pages.films', compact('idFilm'));
+  }
+
+  public function tv($id) {
+
+    $idFilm = $id;
+    return view('pages.tv', compact('idFilm'));
+  }
 }

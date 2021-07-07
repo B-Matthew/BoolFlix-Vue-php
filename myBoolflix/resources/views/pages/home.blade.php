@@ -29,9 +29,13 @@
       </transition>
       </section>
     </div>
-     <example-component :user-on="userOn">
 
-     </example-component>
+    {{-- Attach Vue component --}}
+     <home-component :user-on="userOn" :routemovie="/films/" :routetv="/tv/">
+
+     </home-component>
 
   </main>
 @endsection
+    
+

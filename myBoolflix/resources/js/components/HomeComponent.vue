@@ -4,33 +4,27 @@
       <h2>{{userOn}}, Continua a guardare:</h2>
       <ul>
         <li v-for="watching in toWatch">
-          <a href="#">
+          <a :href="routetv + watching.id">
             <img class="cards" :src="getImage(watching.poster_path)" alt="">
-            <h3>
-              {{watching.name}}
-            </h3>
+            <h3>{{watching.name}}</h3>
           </a>
         </li>
       </ul>
       <h2>I più popolari su Netflix:</h2>
       <ul>
         <li v-for="movie in movies">
-          <a href="#">
+          <a :href="routemovie + movie.id">
             <img class="cards" :src="getImage(movie.poster_path)" alt="">
-            <h3>
-              {{movie.title}}
-            </h3>
+            <h3>{{movie.title}}</h3>
           </a>
         </li>
       </ul>
       <h2>Serie TV:</h2>
       <ul>
         <li v-for="serie in seriesTv">
-          <a href="#">
+          <a :href="routetv + serie.id">
             <img class="cards" :src="getImage(serie.poster_path)" alt="">
-            <h3>
-              {{serie.name}}
-            </h3>
+            <h3>{{serie.name}}</h3>
           </a>
         </li>
       </ul>
@@ -42,7 +36,9 @@
 
 export default {
   props: {
-    userOn:String
+    userOn:String,
+    routemovie: RegExp ,
+    routetv: RegExp ,
   },
   data () {
     return {
@@ -58,13 +54,11 @@ export default {
     axios.get("https://api.themoviedb.org/3/movie/popular",{
       params: {
         'api_key': '1550e050d06eb77cc575c30c39bfab7c',
-        'page' :1,
+        'page' : 1,
       }
     })
     .then((data) => {
       this.movies = data.data.results;
-      console.log(data);
-      console.log(this.movies);
     },
     (error) => {
       console.log(error);
@@ -78,8 +72,6 @@ export default {
     })
     .then((data) => {
       this.seriesTv = data.data.results;
-      console.log(data);
-      console.log(this.seriesTv);
     },
     (error) => {
       console.log(error);
@@ -107,7 +99,10 @@ export default {
 
       return this.img_path + img;
     },
+    
   }
 }
 
 </script>
+    
+    

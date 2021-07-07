@@ -15,3 +15,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'myController@home')
       ->name('home');
+
+Route::get('/films/{id}' , 'myController@films')
+      ->name('films');
+
+Route::get('/tv/{id}' , 'myController@tv')
+->name('tv');
+
+
