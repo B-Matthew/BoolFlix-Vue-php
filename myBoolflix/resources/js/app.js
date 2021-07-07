@@ -13,13 +13,28 @@ document.addEventListener("DOMContentLoaded", () => {
         trailerShow: false,
         userOn: "Matthew",
         searchInput: "",
+        searchMovie: [],
+        img_path: "https://image.tmdb.org/t/p/w185",
       }
     },
     
     methods: {
       // Funzione per prendere il valore dalla searchBar
       enterKey: function () {
-        console.log("ciao")
+        axios.get("https://api.themoviedb.org/3/search/movie", {
+          params: {
+            'api_key': '1550e050d06eb77cc575c30c39bfab7c',
+            'query': this.searchInput,
+          }
+        })
+          .then((data) => {
+            this.searchMovie = data.data.results;
+            console.log(this.searchMovie);
+          },
+            (error) => {
+              console.log(error);
+            });
+        console.log(this.searchInput);
         return this.searchInput;
       },
       // Funzione per far partire il trailer
@@ -38,6 +53,10 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         this.userOn = "Sara";
       }
+    },
+    getImage: function (img) {
+
+      return this.img_path + img;
     },
   },
 });

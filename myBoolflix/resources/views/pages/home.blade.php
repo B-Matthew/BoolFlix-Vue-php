@@ -1,6 +1,20 @@
 @extends('layouts.main-layout')
 @section('content')
   <main>
+    <section v-if="!searchInput == ''" class="generi">
+      <div class="myContainer">
+      <h2>Ricerca: </h2>
+      <ul>
+        <li v-for="(movie,index) in searchMovie" v-if="movie.poster_path && index < 6">
+          <a :href="/films/ + movie.id">
+            <img class="cards" :src="getImage(movie.poster_path)" alt="">
+            <h3>@{{movie.name}}</h3>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+    
     {{-- JUMBOTRON --}}
     <div class="myContainer">
       <section class="myJumbotron">
@@ -39,3 +53,5 @@
 @endsection
     
 
+      
+      
