@@ -1,7 +1,7 @@
 @extends('layouts.main-layout')
 @section('content')
   <main>
-    <section v-if="!searchInput == ''" class="generi">
+    <section v-if="searchMovie.length > 1" class="generi">
       <div class="myContainer">
       <h2>Ricerca: </h2>
       <ul>

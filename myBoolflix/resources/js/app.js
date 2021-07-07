@@ -34,8 +34,8 @@ document.addEventListener("DOMContentLoaded", () => {
             (error) => {
               console.log(error);
             });
-        console.log(this.searchInput);
-        return this.searchInput;
+        
+        this.searchInput = "";
       },
       // Funzione per far partire il trailer
     trailerOn: function() {
