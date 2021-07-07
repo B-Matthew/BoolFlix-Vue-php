@@ -7,13 +7,19 @@
           
           <div class="">
             <h2>{{film.original_name}}</h2>
-            <p class="grey">2019 | <span id="border">VM14</span> | 1 stagione | Serie TV fantasy</p>
+            <p class="grey">
+              {{getYearRelease(film.first_air_date)}} | 
+              <span v-if ="film.adult" id="border">VM14</span> 
+              <span v-else id="border">Per Tutti</span> 
+              | {{film.number_of_seasons}} <span v-if="film.number_of_seasons == 1">stagione</span><span v-else>stagioni</span> | Serie TV 
+              <span v-for="gen in film.genres">| {{gen.name}} </span>
+              </p>
             <p id="description">
               {{film.overview}}
             </p>
-            <p><span class="grey">Con: </span>Henry Cavill,Anya Chalotra,Freya Allan <br> <span class="grey">Creato da: </span>Lauren Schmidt Hissrich</p>
+            <p><span class="grey">Creato da: </span><span v-for="create in film.created_by">{{create.name}}</span></p>
             <div class="btns_jumbo">
-              <button @click="trailerOn()"id="testBtn" type="button" name="button"><i class="fas fa-play"></i> Riproduci Trailer</button>
+              <button @click="trailerOn()"id="testBtn" type="button" name="button"><i class="fas fa-play"></i> Riproduci</button>
               <button type="button" name="button">+ Le Mie Liste</button>
             </div>
           </div>
@@ -57,7 +63,10 @@ export default {
 
       return this.img_path + img;
     },
-    
+    getYearRelease: function(year) {
+      let getYear = year.slice(0,4);
+      return getYear;
+    }
   }
 }
 

@@ -226,6 +226,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     id: Number
@@ -254,6 +257,10 @@ __webpack_require__.r(__webpack_exports__);
     // funzione per creare le immagini
     getImage: function getImage(img) {
       return this.img_path + img;
+    },
+    getYearRelease: function getYearRelease(year) {
+      var getYear = year.slice(0, 4);
+      return getYear;
     }
   }
 });
@@ -329,6 +336,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     id: Number
@@ -357,6 +370,10 @@ __webpack_require__.r(__webpack_exports__);
     // funzione per creare le immagini
     getImage: function getImage(img) {
       return this.img_path + img;
+    },
+    getYearRelease: function getYearRelease(year) {
+      var getYear = year.slice(0, 4);
+      return getYear;
     }
   }
 });
@@ -853,16 +870,18 @@ var render = function() {
       _c(
         "ul",
         _vm._l(_vm.toWatch, function(watching) {
-          return _c("li", [
-            _c("a", { attrs: { href: _vm.routetv + watching.id } }, [
-              _c("img", {
-                staticClass: "cards",
-                attrs: { src: _vm.getImage(watching.poster_path), alt: "" }
-              }),
-              _vm._v(" "),
-              _c("h3", [_vm._v(_vm._s(watching.name))])
-            ])
-          ])
+          return watching.poster_path
+            ? _c("li", [
+                _c("a", { attrs: { href: _vm.routetv + watching.id } }, [
+                  _c("img", {
+                    staticClass: "cards",
+                    attrs: { src: _vm.getImage(watching.poster_path), alt: "" }
+                  }),
+                  _vm._v(" "),
+                  _c("h3", [_vm._v(_vm._s(watching.name))])
+                ])
+              ])
+            : _vm._e()
         }),
         0
       ),
@@ -872,16 +891,18 @@ var render = function() {
       _c(
         "ul",
         _vm._l(_vm.movies, function(movie) {
-          return _c("li", [
-            _c("a", { attrs: { href: _vm.routemovie + movie.id } }, [
-              _c("img", {
-                staticClass: "cards",
-                attrs: { src: _vm.getImage(movie.poster_path), alt: "" }
-              }),
-              _vm._v(" "),
-              _c("h3", [_vm._v(_vm._s(movie.title))])
-            ])
-          ])
+          return movie.poster_path
+            ? _c("li", [
+                _c("a", { attrs: { href: _vm.routemovie + movie.id } }, [
+                  _c("img", {
+                    staticClass: "cards",
+                    attrs: { src: _vm.getImage(movie.poster_path), alt: "" }
+                  }),
+                  _vm._v(" "),
+                  _c("h3", [_vm._v(_vm._s(movie.title))])
+                ])
+              ])
+            : _vm._e()
         }),
         0
       ),
@@ -891,16 +912,18 @@ var render = function() {
       _c(
         "ul",
         _vm._l(_vm.seriesTv, function(serie) {
-          return _c("li", [
-            _c("a", { attrs: { href: _vm.routetv + serie.id } }, [
-              _c("img", {
-                staticClass: "cards",
-                attrs: { src: _vm.getImage(serie.poster_path), alt: "" }
-              }),
-              _vm._v(" "),
-              _c("h3", [_vm._v(_vm._s(serie.name))])
-            ])
-          ])
+          return serie.poster_path
+            ? _c("li", [
+                _c("a", { attrs: { href: _vm.routetv + serie.id } }, [
+                  _c("img", {
+                    staticClass: "cards",
+                    attrs: { src: _vm.getImage(serie.poster_path), alt: "" }
+                  }),
+                  _vm._v(" "),
+                  _c("h3", [_vm._v(_vm._s(serie.name))])
+                ])
+              ])
+            : _vm._e()
         }),
         0
       )
@@ -944,7 +967,27 @@ var render = function() {
           _c("div", {}, [
             _c("h2", [_vm._v(_vm._s(_vm.film.original_title))]),
             _vm._v(" "),
-            _vm._m(0),
+            _c(
+              "p",
+              { staticClass: "grey" },
+              [
+                _vm._v(
+                  "\n            " +
+                    _vm._s(_vm.getYearRelease(_vm.film.release_date)) +
+                    " | \n            "
+                ),
+                _vm.film.adult
+                  ? _c("span", { attrs: { id: "border" } }, [_vm._v("VM14")])
+                  : _c("span", { attrs: { id: "border" } }, [
+                      _vm._v("Per Tutti")
+                    ]),
+                _vm._v(" "),
+                _vm._l(_vm.film.genres, function(gen) {
+                  return _c("span", [_vm._v("| " + _vm._s(gen.name) + " ")])
+                })
+              ],
+              2
+            ),
             _vm._v(" "),
             _c("p", { attrs: { id: "description" } }, [
               _vm._v(
@@ -952,7 +995,16 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _vm._m(1),
+            _c(
+              "p",
+              [
+                _c("span", { staticClass: "grey" }, [_vm._v("Creato da: ")]),
+                _vm._l(_vm.film.production_companies, function(create) {
+                  return _c("span", [_vm._v(_vm._s(create.name) + " ")])
+                })
+              ],
+              2
+            ),
             _vm._v(" "),
             _c("div", { staticClass: "btns_jumbo" }, [
               _c(
@@ -965,10 +1017,7 @@ var render = function() {
                     }
                   }
                 },
-                [
-                  _c("i", { staticClass: "fas fa-play" }),
-                  _vm._v(" Riproduci Trailer")
-                ]
+                [_c("i", { staticClass: "fas fa-play" }), _vm._v(" Riproduci")]
               ),
               _vm._v(" "),
               _c("button", { attrs: { type: "button", name: "button" } }, [
@@ -981,31 +1030,7 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("p", { staticClass: "grey" }, [
-      _vm._v("2019 | "),
-      _c("span", { attrs: { id: "border" } }, [_vm._v("VM14")]),
-      _vm._v(" | 1 stagione | Serie TV fantasy")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("p", [
-      _c("span", { staticClass: "grey" }, [_vm._v("Con: ")]),
-      _vm._v("Henry Cavill,Anya Chalotra,Freya Allan "),
-      _c("br"),
-      _vm._v(" "),
-      _c("span", { staticClass: "grey" }, [_vm._v("Creato da: ")]),
-      _vm._v("Lauren Schmidt Hissrich")
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -1077,7 +1102,33 @@ var render = function() {
           _c("div", {}, [
             _c("h2", [_vm._v(_vm._s(_vm.film.original_name))]),
             _vm._v(" "),
-            _vm._m(0),
+            _c(
+              "p",
+              { staticClass: "grey" },
+              [
+                _vm._v(
+                  "\n            " +
+                    _vm._s(_vm.getYearRelease(_vm.film.first_air_date)) +
+                    " | \n            "
+                ),
+                _vm.film.adult
+                  ? _c("span", { attrs: { id: "border" } }, [_vm._v("VM14")])
+                  : _c("span", { attrs: { id: "border" } }, [
+                      _vm._v("Per Tutti")
+                    ]),
+                _vm._v(
+                  " \n            | " + _vm._s(_vm.film.number_of_seasons) + " "
+                ),
+                _vm.film.number_of_seasons == 1
+                  ? _c("span", [_vm._v("stagione")])
+                  : _c("span", [_vm._v("stagioni")]),
+                _vm._v(" | Serie TV \n            "),
+                _vm._l(_vm.film.genres, function(gen) {
+                  return _c("span", [_vm._v("| " + _vm._s(gen.name) + " ")])
+                })
+              ],
+              2
+            ),
             _vm._v(" "),
             _c("p", { attrs: { id: "description" } }, [
               _vm._v(
@@ -1085,7 +1136,16 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _vm._m(1),
+            _c(
+              "p",
+              [
+                _c("span", { staticClass: "grey" }, [_vm._v("Creato da: ")]),
+                _vm._l(_vm.film.created_by, function(create) {
+                  return _c("span", [_vm._v(_vm._s(create.name))])
+                })
+              ],
+              2
+            ),
             _vm._v(" "),
             _c("div", { staticClass: "btns_jumbo" }, [
               _c(
@@ -1098,10 +1158,7 @@ var render = function() {
                     }
                   }
                 },
-                [
-                  _c("i", { staticClass: "fas fa-play" }),
-                  _vm._v(" Riproduci Trailer")
-                ]
+                [_c("i", { staticClass: "fas fa-play" }), _vm._v(" Riproduci")]
               ),
               _vm._v(" "),
               _c("button", { attrs: { type: "button", name: "button" } }, [
@@ -1114,31 +1171,7 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("p", { staticClass: "grey" }, [
-      _vm._v("2019 | "),
-      _c("span", { attrs: { id: "border" } }, [_vm._v("VM14")]),
-      _vm._v(" | 1 stagione | Serie TV fantasy")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("p", [
-      _c("span", { staticClass: "grey" }, [_vm._v("Con: ")]),
-      _vm._v("Henry Cavill,Anya Chalotra,Freya Allan "),
-      _c("br"),
-      _vm._v(" "),
-      _c("span", { staticClass: "grey" }, [_vm._v("Creato da: ")]),
-      _vm._v("Lauren Schmidt Hissrich")
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

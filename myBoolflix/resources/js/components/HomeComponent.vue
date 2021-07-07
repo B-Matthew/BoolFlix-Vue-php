@@ -3,7 +3,7 @@
     <div class="myContainer">
       <h2>{{userOn}}, Continua a guardare:</h2>
       <ul>
-        <li v-for="watching in toWatch">
+        <li v-for="watching in toWatch" v-if="watching.poster_path">
           <a :href="routetv + watching.id">
             <img class="cards" :src="getImage(watching.poster_path)" alt="">
             <h3>{{watching.name}}</h3>
@@ -12,7 +12,7 @@
       </ul>
       <h2>I più popolari su Netflix:</h2>
       <ul>
-        <li v-for="movie in movies">
+        <li v-for="movie in movies" v-if="movie.poster_path">
           <a :href="routemovie + movie.id">
             <img class="cards" :src="getImage(movie.poster_path)" alt="">
             <h3>{{movie.title}}</h3>
@@ -21,7 +21,7 @@
       </ul>
       <h2>Serie TV:</h2>
       <ul>
-        <li v-for="serie in seriesTv">
+        <li v-for="serie in seriesTv" v-if="serie.poster_path">
           <a :href="routetv + serie.id">
             <img class="cards" :src="getImage(serie.poster_path)" alt="">
             <h3>{{serie.name}}</h3>
